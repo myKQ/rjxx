@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="gbk"?>
+<business id="FPKJ" comment="发票开具">
+    <REQUEST_COMMON_FPKJ class="REQUEST_COMMON_FPKJ">
+        <COMMON_FPKJ_FPT class="COMMON_FPKJ_FPT">
+            <FPQQLSH>${t.FPQQLSH}</FPQQLSH>
+            <KPLX>${t.KPLX}</KPLX>
+            <BMB_BBH>${t.BMB_BBH}</BMB_BBH>
+            <ZSFS>${t.ZSFS}</ZSFS>
+            <XSF_NSRSBH>${t.XSF_NSRSBH}</XSF_NSRSBH>
+            <XSF_MC>${t.XSF_MC}</XSF_MC>
+            <XSF_DZDH>${t.XSF_DZDH}</XSF_DZDH>
+            <XSF_YHZH>${t.XSF_YHZH}</XSF_YHZH>
+            <GMF_NSRSBH>${t.GMF_NSRSBH}</GMF_NSRSBH>
+            <GMF_MC>${t.GMF_MC}</GMF_MC>
+            <GMF_DZDH>${t.GMF_DZDH}</GMF_DZDH>
+            <GMF_YHZH>${t.GMF_YHZH}</GMF_YHZH>
+            <KPR>${t.KPR}</KPR>
+            <SKR>${t.SKR}</SKR>
+            <FHR>${t.FHR}</FHR>
+            <YFP_DM>${t.YFP_DM}</YFP_DM>
+            <YFP_HM>${t.YFP_HM}</YFP_HM>
+            <JSHJ>${t.JSHJ}</JSHJ>
+            <HJJE>${t.HJJE}</HJJE>
+            <HJSE>${t.HJSE}</HJSE>
+            <KCE>${t.KCE}</KCE>
+            <BZ>${t.BZ}</BZ>
+        </COMMON_FPKJ_FPT>
+        <COMMON_FPKJ_XMXXS class="COMMON_FPKJ_XMXX" size="${xmxxLength}">
+
+            <#list xmxxList as dd>
+            <COMMON_FPKJ_XMXX>
+                <FPHXZ>${dd.FPHXZ}</FPHXZ>
+                <SPBM>${dd.SPBM}</SPBM>
+                <ZXBM>${dd.ZXBM}</ZXBM>
+            </COMMON_FPKJ_XMXX>
+        </#list>
+
+    </COMMON_FPKJ_XMXXS>
+</REQUEST_COMMON_FPKJ>
+        </business>
+
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>容津信息</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
+	<style type="text/css">
+		.data-tip {
+			padding: 0px 15px;
+		}
+		.data-rem  {
+			padding-left: 28px;
+    		box-sizing: border-box;
+		}
+		.mui-btn-primary {
+			font-size: 18px;
+		    width: 85%;
+		    margin: 10px auto;
+		    padding: 5px 0;
+		    box-sizing: border-box;
+		    background-color: #41B0E8;
+		    border-radius: 6px;
+		    border: none;
+			outline:none;
+		}
+		#check {
+			vertical-align:middle; 
+		}
+		.mui-input-row label {
+			float: none;
+			padding: 0;
+    	}
+		#msg{
+			display: none;
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<img src="../images/rjxx.jpg"/>
+	</header>
+
+	<section class="data-tip">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎您使用泰易开票云服务平台V2.0移动端产品，我们将为您提供优质、便捷的开票服务。
+	</section>
+
+	<section class="mui-content">		
+		<div class="mui-content-padded" style="margin: 10px;">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<input type="text" id="user" class="mui-input-clear" placeholder="请点此输入用户名">
+				</div>
+				<div class="mui-input-row mui-password">
+					<input type="password" id="pass" class="mui-input-password" placeholder="请点此输入密码">
+				</div>
+			</form>
+		</div>
+		<div class="data-rem">
+			<div class="mui-input-row">
+				<input type="checkbox" name="" id="check">
+				<label for="check">记住用户名和密码</label>
+			</div>
+		</div>
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-block" onclick="fn()">提交</button>
+	</section>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">	
+	    $(function() {
+	    	// 保存密码和用户名
+	        	user = document.getElementsByTagName("input")[0],
+	            pass = document.getElementsByTagName("input")[1],
+	            check = document.getElementsByTagName("input")[2],
+	            loUser = localStorage.getItem("user"),
+	            loPass = localStorage.getItem("pass");
+            if(loUser !== "" && loPass !== ""){
+                check.setAttribute("checked","");
+                user.value = loUser;
+                pass.value = loPass;
+            }
+	    })
+        function fn(){
+            if(check.checked){
+                localStorage.setItem("user",user.value);
+                localStorage.setItem("pass",pass.value);
+            }else{
+                localStorage.setItem("user","");
+                localStorage.setItem("pass","");
+            };
+            $.post(
+                "../wechat/login",
+                {
+                    "user" : user.value,
+                    "pass" : pass.value
+                },
+                function(data) {
+                    if(data.code=="1"){
+                        window.location.href = "../Akey/fptt.html?time=" + new Date()+"=no=no";
+					}else{
+                        alert(data.msg);
+                    }
+                }
+            );
+        }
+	</script>
+</body>
+</html>
